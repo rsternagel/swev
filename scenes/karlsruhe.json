@@ -1,0 +1,17 @@
+{
+  "city": "Karlsruhe",
+  "latLng": [49.006890, 8.403653],
+  "styles": ["Lindy Hop", "Charleston"],
+  "socials": true,
+  "parties": true,
+  "courses": true,
+  "calendarUrl": "",
+  "groups": [
+    {
+      "title": "Swing in Karlsruhe",
+      "url": "http://www.swinginkarlsruhe.de",
+      "kind": "society",
+      "calendarUrl": "http://www.swinginkarlsruhe.de"
+    }
+  ]
+}
