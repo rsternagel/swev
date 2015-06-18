@@ -8,4 +8,9 @@ npm-debug.log
 # vim
 Session.vim
 
+# dist
+dist/js
+dist/json
+dist/css
+
 todo.txt

@@ -15,6 +15,23 @@ var dirs = pkg['swev-configs'].dirs;
 
 // ------
 
+/**
+ *
+ * https://github.com/gulpjs/gulp/tree/master/docs/recipes
+ * http://blog.nodejitsu.com/npmawesome-9-gulp-plugins/
+ *
+ */
+
+// clean dirs.dist
+gulp.task('clean', function () {
+  return gulp.src([
+    dirs.dist + '/js',
+    dirs.dist + '/json',
+    dirs.dist + '/css'
+  ], {read: false})
+    .pipe(plugins.clean());
+});
+
 // lint scenes
 gulp.task('lint:scenes', function () {
   return gulp.src([
@@ -57,21 +74,39 @@ gulp.task('validate:scenes', function () {
 
 
 // combine scenes
-gulp.task('combine:scenes', function () {
+gulp.task('build:scenes', function () {
   return gulp.src([
-    dirs.scenes + '/*.json',
+    dirs.scenes + '/*.json'
   ]).pipe(plugins.jsoncombine('scenes.js', function(data){
     return new Buffer(JSON.stringify(data));
-  })).pipe(gulp.dest('./src/json'));
+  })).pipe(gulp.dest(dirs.dist + '/json'));
+});
+
+
+// build js
+gulp.task('build:js', function(){
+    return gulp.src([dirs.src + '/js/*.js'])
+        .pipe(plugins.concat('main.js'))
+        .pipe(gulp.dest(dirs.dist + '/js'))
+        .pipe(plugins.uglify())
+        .pipe(plugins.rename('main.min.js'))
+        .pipe(gulp.dest(dirs.dist + '/js'));
+});
+
+
+// copy
+gulp.task('copy', function () {
+    gulp.src('./src/css/**/*')
+        .pipe(gulp.dest('dist/css'));
 });
 
 
 // add dev server
 gulp.task('server', function() {
   plugins.connect.server({
-    root: 'src'
+    root: 'dist'
   });
 });
 
 
-gulp.task('default', ['lint:js', 'lint:scenes', 'validate:scenes', 'combine:scenes']);
+gulp.task('default', ['clean', 'lint:js', 'lint:scenes', 'validate:scenes', 'build:scenes', 'build:js', 'copy']);
