@@ -66,4 +66,12 @@ gulp.task('combine:scenes', function () {
 });
 
 
+// add dev server
+gulp.task('server', function() {
+  plugins.connect.server({
+    root: 'src'
+  });
+});
+
+
 gulp.task('default', ['lint:js', 'lint:scenes', 'validate:scenes', 'combine:scenes']);
