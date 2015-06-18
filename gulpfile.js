@@ -16,13 +16,10 @@ var dirs = pkg['swev-configs'].dirs;
 // ------
 
 /**
- *
  * https://github.com/gulpjs/gulp/tree/master/docs/recipes
  * http://blog.nodejitsu.com/npmawesome-9-gulp-plugins/
- *
  */
 
-// clean dirs.dist
 gulp.task('clean', function () {
   return gulp.src([
     dirs.dist + '/js',
@@ -32,7 +29,7 @@ gulp.task('clean', function () {
     .pipe(plugins.clean());
 });
 
-// lint scenes
+
 gulp.task('lint:scenes', function () {
   return gulp.src([
     dirs.scenes + '/*.json',
@@ -42,7 +39,6 @@ gulp.task('lint:scenes', function () {
 });
 
 
-// lint js files
 gulp.task('lint:js', function () {
   return gulp.src([
     'gulpfile.js',
@@ -53,7 +49,6 @@ gulp.task('lint:js', function () {
 });
 
 
-// validate scene data
 gulp.task('validate:scenes', function () {
   var schema = JSON.parse(fs.readFileSync(dirs.scenes + '/schema/scene-schema.json', {encoding: 'utf8'}));
   var isSceneJson = function(file) {
@@ -73,7 +68,6 @@ gulp.task('validate:scenes', function () {
 });
 
 
-// combine scenes
 gulp.task('build:scenes', function () {
   return gulp.src([
     dirs.scenes + '/*.json'
@@ -83,7 +77,6 @@ gulp.task('build:scenes', function () {
 });
 
 
-// build js
 gulp.task('build:js', function(){
     return gulp.src([dirs.src + '/js/*.js'])
         .pipe(plugins.concat('main.js'))
@@ -94,14 +87,19 @@ gulp.task('build:js', function(){
 });
 
 
-// copy
-gulp.task('copy', function () {
-    gulp.src('./src/css/**/*')
-        .pipe(gulp.dest('dist/css'));
+gulp.task('build:css', function () {
+    return gulp.src([
+      'node_modules/normalize.css/normalize.css',
+      dirs.src + '/css/main.css',
+      dirs.src + '/css/map.css'
+    ]).pipe(plugins.concat('main.css'))
+      .pipe(gulp.dest(dirs.dist + '/css'))
+      .pipe(plugins.sass({outputStyle: 'compressed'}).on('error', plugins.sass.logError))
+      .pipe(plugins.rename('main.min.css'))
+      .pipe(gulp.dest(dirs.dist + '/css'));
 });
 
 
-// add dev server
 gulp.task('server', function() {
   plugins.connect.server({
     root: 'dist'
@@ -109,4 +107,4 @@ gulp.task('server', function() {
 });
 
 
-gulp.task('default', ['clean', 'lint:js', 'lint:scenes', 'validate:scenes', 'build:scenes', 'build:js', 'copy']);
+gulp.task('default', ['clean', 'lint:js', 'lint:scenes', 'validate:scenes', 'build:js', 'build:scenes', 'build:css']);
