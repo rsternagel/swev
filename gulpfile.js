@@ -38,9 +38,9 @@ gulp.task('lint:js', function () {
 
 // validate scene data
 gulp.task('validate:scenes', function () {
-  var schema = JSON.parse(fs.readFileSync(dirs.scenes + '/scene-schema.json', {encoding: 'utf8'}));
+  var schema = JSON.parse(fs.readFileSync(dirs.scenes + '/schema/scene-schema.json', {encoding: 'utf8'}));
   var isSceneJson = function(file) {
-    return (file.match(/.json$/) && !file.match("schema\.json$"));
+    return (file.match(/.json$/) && !file.match('schema\.json$'));
   };
   var sceneJsonPaths = shell.find('scenes').filter(isSceneJson);
 
@@ -56,4 +56,14 @@ gulp.task('validate:scenes', function () {
 });
 
 
-gulp.task('default', ['lint:js', 'lint:scenes', 'validate:scenes']);
+// combine scenes
+gulp.task('combine:scenes', function () {
+  return gulp.src([
+    dirs.scenes + '/*.json',
+  ]).pipe(plugins.jsoncombine('scenes.js', function(data){
+    return new Buffer(JSON.stringify(data));
+  })).pipe(gulp.dest('./src/json'));
+});
+
+
+gulp.task('default', ['lint:js', 'lint:scenes', 'validate:scenes', 'combine:scenes']);
