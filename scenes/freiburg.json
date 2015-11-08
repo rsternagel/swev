@@ -6,10 +6,12 @@
   "parties": true,
   "courses": true,
   "calendarUrl": "",
-  "events": {
-    "title": "Black Forest Hop",
-    "url": "http://blackforesthop.com/"
-  },
+  "events": [
+    {
+      "title": "Black Forest Hop",
+      "url": "http://blackforesthop.com/"
+    }
+  ],
   "groups": [
     {
       "title": "Swing-In' Freiburg",

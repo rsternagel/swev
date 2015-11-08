@@ -19,10 +19,13 @@
     "courses": { "type": "boolean" },
     "calendarUrl": { "type": "string" },
     "events": {
-      "type": "object",
-      "properties": {
-        "title": { "type": "string" },
-        "url": { "type": "string" }
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "url": { "type": "string" }
+        }
       }
     },
     "groups": {
