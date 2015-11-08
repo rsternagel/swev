@@ -52,7 +52,8 @@ gulp.task('lint:js', function () {
 gulp.task('validate:scenes', function () {
   var schema = JSON.parse(fs.readFileSync(dirs.scenes + '/schema/scene-schema.json', {encoding: 'utf8'}));
   var isSceneJson = function(file) {
-    return (file.match(/.json$/) && !file.match('schema\.json$'));
+    // return (file.match(/.json$/) && !file.match('schema\.json$'));
+    return file.match('freiburg.json') || file.match('karlsruhe.json') || file.match('koeln.json');
   };
   var sceneJsonPaths = shell.find('scenes').filter(isSceneJson);
 
