@@ -1,0 +1,29 @@
+{
+  "city": "Köln",
+  "latLng": [50.937531, 6.960279],
+  "styles": ["Lindy Hop", "Balboa", "Charleston", "Shag", "Blues"],
+  "socials": true,
+  "parties": true,
+  "courses": true,
+  "calendarUrl": "",
+  "events": [
+    {
+      "title": "Balboa Cologne",
+      "url": "http://swinginpoolcologne.weebly.com/balboa-cologne-iv.html"
+    }
+  ],
+  "groups": [
+    {
+      "title": "Swingin' Pool Cologne",
+      "url": "http://swinginpoolcologne.weebly.com",
+      "kind": "society",
+      "calendarUrl": "http://swinginpoolcologne.weebly.com/swingkalender.html"
+    },
+    {
+      "title": "Hop Spot",
+      "url": "http://www.hopspot.eu",
+      "kind": "school",
+      "calendarUrl": "http://www.hopspot.eu/kalender.html"
+    }
+  ]
+}
