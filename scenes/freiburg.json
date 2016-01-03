@@ -4,7 +4,7 @@
   "styles": ["Lindy Hop", "Balboa", "Charleston"],
   "socials": true,
   "parties": true,
-  "courses": true,
+  "classes": true,
   "calendarUrl": "",
   "events": [
     {

@@ -16,7 +16,7 @@
     },
     "socials": { "type": "boolean" },
     "parties": { "type": "boolean" },
-    "courses": { "type": "boolean" },
+    "classes": { "type": "boolean" },
     "calendarUrl": { "type": "string" },
     "events": {
       "type": "array",
@@ -49,7 +49,7 @@
     "styles",
     "socials",
     "parties",
-    "courses",
+    "classes",
     "groups"
   ]
 }
