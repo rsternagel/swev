@@ -72,7 +72,12 @@ gulp.task('validate:scenes', function () {
 gulp.task('build:scenes', function () {
   return gulp.src([
     dirs.scenes + '/*.json'
-  ]).pipe(plugins.jsoncombine('scenes.js', function(data){
+  ]).pipe(plugins.jsoncombine('scenes.json', function(data){
+    for (var city in data) {
+      if (data.hasOwnProperty(city)) {
+        data[city] = data[city].latLng;
+      }
+    }
     return new Buffer(JSON.stringify(data));
   })).pipe(gulp.dest(dirs.dist + '/json'));
 });
