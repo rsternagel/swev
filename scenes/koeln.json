@@ -20,6 +20,12 @@
       "calendarUrl": "http://swinginpoolcologne.weebly.com/swingkalender.html"
     },
     {
+      "title": "SwingConnects",
+      "url": "http://www.swingconnects.com",
+      "kind": "school",
+      "calendarUrl": ""
+    },
+    {
       "title": "Hop Spot",
       "url": "http://www.hopspot.eu",
       "kind": "school",
@@ -27,3 +33,4 @@
     }
   ]
 }
+
